@@ -10,11 +10,12 @@
 
     <TextView
         android:id="@+id/dateEvent"
-        android:layout_width="0dp"
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8sp"
+        android:layout_marginTop="8sp"
+        android:layout_marginEnd="8sp"
+        android:gravity="center"
         android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,20 +25,21 @@
         android:id="@+id/homeTeamPicture"
         android:layout_width="64sp"
         android:layout_height="64sp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="21dp"
+        android:layout_marginStart="32sp"
+        android:layout_marginTop="32sp"
+        android:layout_marginEnd="21sp"
         android:src="@android:drawable/screen_background_light_transparent"
         app:layout_constraintEnd_toStartOf="@+id/homeScore"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateEvent" />
+        app:layout_constraintTop_toBottomOf="@+id/dateEvent"
+        android:contentDescription="@string/defaultHome" />
 
     <TextView
         android:id="@+id/homeScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="16sp"
+        android:layout_marginTop="48sp"
         android:text="@string/defaultScore"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -49,9 +51,9 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8sp"
+        android:layout_marginTop="48sp"
+        android:layout_marginEnd="8sp"
         android:text="@string/versus"
         android:textColor="@color/colorAccent"
         android:textSize="18sp"
@@ -64,8 +66,8 @@
         android:id="@+id/awayScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="48sp"
+        android:layout_marginEnd="16sp"
         android:text="@string/defaultScore"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -77,30 +79,36 @@
         android:id="@+id/awayTeamPicture"
         android:layout_width="64sp"
         android:layout_height="64sp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32sp"
+        android:layout_marginTop="32sp"
+        android:layout_marginEnd="32sp"
         android:src="@android:drawable/screen_background_light_transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/awayScore"
-        app:layout_constraintTop_toBottomOf="@+id/dateEvent" />
+        app:layout_constraintTop_toBottomOf="@+id/dateEvent"
+        android:contentDescription="@string/defaultAway" />
 
     <TextView
         android:id="@+id/homeTeam"
-        android:layout_width="wrap_content"
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="16sp"
+        android:layout_marginEnd="64sp"
+        android:gravity="center"
+        android:singleLine="false"
+        app:layout_constraintEnd_toStartOf="@+id/awayTeam"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/homeTeamPicture" />
 
     <TextView
         android:id="@+id/awayTeam"
-        android:layout_width="wrap_content"
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="64sp"
+        android:layout_marginTop="16sp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/homeTeam"
         app:layout_constraintTop_toBottomOf="@+id/awayTeamPicture" />
 
     <View
@@ -116,9 +124,9 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16sp"
+        android:layout_marginTop="16sp"
+        android:layout_marginEnd="16sp"
         android:gravity="center"
         android:text="@string/goals"
         android:textColor="@color/colorAccent"
@@ -130,22 +138,24 @@
 
     <TextView
         android:id="@+id/goalHome"
-        android:layout_width="wrap_content"
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8sp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="8sp"
+        android:gravity="center"
         app:layout_constraintEnd_toStartOf="@id/textView6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/horizontal_line1" />
 
     <TextView
         android:id="@+id/goalAway"
-        android:layout_width="wrap_content"
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8sp"
+        android:layout_marginTop="16sp"
+        android:layout_marginEnd="8sp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/horizontal_line1" />
@@ -161,25 +171,26 @@
 
     <TextView
         android:id="@+id/shotsHome"
-        android:layout_width="wrap_content"
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="8sp"
         android:layout_marginTop="16sp"
+        android:layout_marginEnd="8sp"
         android:layout_marginBottom="16sp"
-        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/horizontal_line3"
         app:layout_constraintEnd_toStartOf="@id/shots"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/horizontal_line2"
-        app:layout_constraintBottom_toTopOf="@id/horizontal_line3"/>
+        app:layout_constraintTop_toBottomOf="@id/horizontal_line2" />
 
 
     <TextView
         android:id="@+id/shots"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="16sp"
         android:layout_marginTop="16sp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="16sp"
         android:layout_marginBottom="16sp"
         android:text="@string/shots"
         android:textColor="@color/colorAccent"
@@ -192,16 +203,17 @@
 
     <TextView
         android:id="@+id/shotsAway"
-        android:layout_width="wrap_content"
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="8sp"
         android:layout_marginTop="16sp"
+        android:layout_marginEnd="8sp"
         android:layout_marginBottom="16sp"
-        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/horizontal_line3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/shots"
-        app:layout_constraintTop_toBottomOf="@id/horizontal_line2"
-        app:layout_constraintBottom_toTopOf="@id/horizontal_line3"/>
+        app:layout_constraintTop_toBottomOf="@id/horizontal_line2" />
 
     <View
         android:id="@+id/horizontal_line3"
@@ -216,7 +228,7 @@
         android:id="@+id/lineups"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="16sp"
         android:text="@string/lineup"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -225,21 +237,21 @@
 
     <TextView
         android:id="@+id/gkHome"
-        android:layout_width="wrap_content"
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="8sp"
         android:layout_marginTop="16sp"
-        android:layout_marginBottom="16sp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginEnd="8sp"
+        android:gravity="center"
         app:layout_constraintEnd_toStartOf="@id/Goalskeeper"
-        app:layout_constraintTop_toBottomOf="@id/lineups"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lineups" />
 
     <TextView
         android:id="@+id/Goalskeeper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="16sp"
         android:text="@string/goalkeepers"
         android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toStartOf="@id/gkAway"
@@ -248,33 +260,33 @@
 
     <TextView
         android:id="@+id/gkAway"
-        android:layout_width="wrap_content"
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="8sp"
         android:layout_marginTop="16sp"
-        android:layout_marginBottom="16sp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="8sp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/Goalskeeper"
-        app:layout_constraintTop_toBottomOf="@id/lineups"/>
+        app:layout_constraintTop_toBottomOf="@id/lineups" />
 
     <TextView
         android:id="@+id/dfHome"
-        android:layout_width="wrap_content"
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="8sp"
         android:layout_marginTop="16sp"
-        android:layout_marginBottom="16sp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginEnd="8sp"
+        android:gravity="center"
         app:layout_constraintEnd_toStartOf="@id/Defenders"
-        app:layout_constraintTop_toBottomOf="@id/gkHome"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gkHome" />
 
     <TextView
         android:id="@+id/Defenders"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="16sp"
         android:text="@string/defenders"
         android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toStartOf="@id/dfAway"
@@ -283,119 +295,119 @@
 
     <TextView
         android:id="@+id/dfAway"
-        android:layout_width="wrap_content"
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="8sp"
         android:layout_marginTop="16sp"
-        android:layout_marginBottom="16sp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="8sp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/Defenders"
-        app:layout_constraintTop_toBottomOf="@id/gkHome"/>
+        app:layout_constraintTop_toBottomOf="@id/gkAway" />
 
     <TextView
         android:id="@+id/mfHome"
-        android:layout_width="wrap_content"
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="8sp"
         android:layout_marginTop="16sp"
-        android:layout_marginBottom="16sp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginEnd="8sp"
+        android:gravity="center"
         app:layout_constraintEnd_toStartOf="@id/Midfielder"
-        app:layout_constraintTop_toBottomOf="@id/lineups"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dfHome" />
 
     <TextView
         android:id="@+id/Midfielder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="16sp"
         android:text="@string/midfielders"
         android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toStartOf="@id/mfAway"
         app:layout_constraintStart_toEndOf="@id/mfHome"
-        app:layout_constraintTop_toBottomOf="@id/dfHome" />
+        app:layout_constraintTop_toBottomOf="@id/Defenders" />
 
     <TextView
         android:id="@+id/mfAway"
-        android:layout_width="wrap_content"
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="8sp"
         android:layout_marginTop="16sp"
-        android:layout_marginBottom="16sp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="8sp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/Midfielder"
-        app:layout_constraintTop_toBottomOf="@id/dfHome"/>
+        app:layout_constraintTop_toBottomOf="@id/dfAway" />
 
     <TextView
         android:id="@+id/fwHome"
-        android:layout_width="wrap_content"
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="8sp"
         android:layout_marginTop="16sp"
-        android:layout_marginBottom="16sp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginEnd="8sp"
+        android:gravity="center"
         app:layout_constraintEnd_toStartOf="@id/Forwards"
-        app:layout_constraintTop_toBottomOf="@id/mfHome"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mfHome" />
 
     <TextView
         android:id="@+id/Forwards"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="16sp"
         android:text="@string/forwards"
         android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toStartOf="@id/fwAway"
         app:layout_constraintStart_toEndOf="@id/fwHome"
-        app:layout_constraintTop_toBottomOf="@id/mfHome" />
+        app:layout_constraintTop_toBottomOf="@id/Midfielder" />
 
     <TextView
         android:id="@+id/fwAway"
-        android:layout_width="wrap_content"
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="8sp"
         android:layout_marginTop="16sp"
-        android:layout_marginBottom="16sp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="8sp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/Forwards"
-        app:layout_constraintTop_toBottomOf="@id/mfHome"/>
+        app:layout_constraintTop_toBottomOf="@id/mfAway" />
 
     <TextView
         android:id="@+id/subsHome"
-        android:layout_width="wrap_content"
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="8sp"
         android:layout_marginTop="16sp"
-        android:layout_marginBottom="16sp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginEnd="8sp"
+        android:gravity="center"
         app:layout_constraintEnd_toStartOf="@id/Substitutes"
-        app:layout_constraintTop_toBottomOf="@id/fwHome"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fwHome" />
 
     <TextView
         android:id="@+id/Substitutes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="16sp"
         android:text="@string/substitutes"
         android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toStartOf="@id/subsAway"
         app:layout_constraintStart_toEndOf="@id/subsHome"
-        app:layout_constraintTop_toBottomOf="@id/fwHome" />
+        app:layout_constraintTop_toBottomOf="@id/Forwards" />
 
     <TextView
         android:id="@+id/subsAway"
-        android:layout_width="wrap_content"
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="8sp"
         android:layout_marginTop="16sp"
-        android:layout_marginBottom="16sp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="8sp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/Substitutes"
-        app:layout_constraintTop_toBottomOf="@id/fwHome"/>
+        app:layout_constraintTop_toBottomOf="@id/fwAway" />
 
 </android.support.constraint.ConstraintLayout>

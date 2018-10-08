@@ -12,7 +12,9 @@ import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.content_detail_activity.*
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.regex.Pattern
+import org.json.JSONArray
+
+
 
 class DetailActivity : AppCompatActivity() {
 
@@ -31,51 +33,56 @@ class DetailActivity : AppCompatActivity() {
                 val respond = String(response.data)
                 val stringBuilder = StringBuilder(respond)
                 val respondParser = Parser().parse(stringBuilder) as JsonObject
-                val idHomeTeam = respondParser.string("idHomeTeam")
-                val idAwayTeam = respondParser.string("idAwayTeam")
-                val strHomeTeam = respondParser.string("strHomeTeam")
-                val strAwayTeam = respondParser.string("strAwayTeam")
-                val intHomeScore = respondParser.string("intHomeScore")
-                val intAwayScore = respondParser.string("intAwayScore")
-                val strHomeGoalDetails = respondParser.string("strHomeGoalDetails")
-                val strHomeLineupGoalKeeper = respondParser.string("strHomeLineupGoalKeeper")
-                val strHomeLineupDefense = respondParser.string("strHomeLineupDefense")
-                val strHomeLineupMidfield = respondParser.string("strHomeLineupMidfield")
-                val strHomeLineupForward = respondParser.string("strHomeLineupForward")
-                val strHomeLineupSubstitutes = respondParser.string("strHomeLineupSubstitutes")
-                val strAwayGoalDetails = respondParser.string("strAwayGoalDetails")
-                val strAwayLineupGoalKeeper = respondParser.string("strAwayLineupGoalKeeper")
-                val strAwayLineupDefense = respondParser.string("strAwayLineupDefense")
-                val strAwayLineupMidfield = respondParser.string("strAwayLineupMidfield")
-                val strAwayLineupForward = respondParser.string("strAwayLineupForward")
-                val strAwayLineupSubstitutes = respondParser.string("strAwayLineupSubstitutes")
-                val intHomeShot = respondParser.string("intHomeShot")
-                val intAwayShot = respondParser.string("intAwayShot")
-                val strDateEvent = respondParser.string("dateEvent")
-                val indonesiaDateFormat = Locale("in","ID","ID")
-                val dateTime = SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(strDateEvent)
-                val dateTime2 = SimpleDateFormat("EEEE, dd MMMM yyyy", indonesiaDateFormat).format(dateTime)
-                dateEvent.text = dateTime2
-                homeTeam.text = strHomeTeam
-                awayTeam.text = strAwayTeam
-                homeScore.text = intHomeScore.toString()
-                awayScore.text = intAwayScore.toString()
-                goalHome.text = strHomeGoalDetails
-                goalAway.text = strAwayGoalDetails
-                gkHome.text = strHomeLineupGoalKeeper
-                gkAway.text = strAwayLineupGoalKeeper
-                dfHome.text = strHomeLineupDefense
-                dfAway.text = strAwayLineupDefense
-                mfHome.text = strHomeLineupMidfield
-                mfAway.text = strAwayLineupMidfield
-                fwHome.text = strHomeLineupForward
-                fwAway.text = strAwayLineupForward
-                subsHome.text = strHomeLineupSubstitutes
-                subsAway.text = strAwayLineupSubstitutes
-                shotsHome.text = intHomeShot.toString()
-                shotsAway.text = intAwayShot.toString()
-                homeTeamLogo(idHomeTeam)
-                awayTeamLogo(idAwayTeam)
+                val data = respondParser.array<String>("events")
+                val array = JSONArray(data)
+                for (i in 0 until array.length()) {
+                    val row = array.getJSONObject(i)
+                    val idHomeTeam = row?.getString("idHomeTeam")
+                    val idAwayTeam = row?.getString("idAwayTeam")
+                    val strHomeTeam = row?.getString("strHomeTeam")
+                    val strAwayTeam = row?.getString("strAwayTeam")
+                    val intHomeScore = row?.getString("intHomeScore")
+                    val intAwayScore = row?.getString("intAwayScore")
+                    val strHomeGoalDetails = row?.getString("strHomeGoalDetails")
+                    val strHomeLineupGoalKeeper = row?.getString("strHomeLineupGoalkeeper")
+                    val strHomeLineupDefense = row?.getString("strHomeLineupDefense")
+                    val strHomeLineupMidfield = row?.getString("strHomeLineupMidfield")
+                    val strHomeLineupForward = row?.getString("strHomeLineupForward")
+                    val strHomeLineupSubstitutes = row?.getString("strHomeLineupSubstitutes")
+                    val strAwayGoalDetails = row?.getString("strAwayGoalDetails")
+                    val strAwayLineupGoalKeeper = row?.getString("strAwayLineupGoalkeeper")
+                    val strAwayLineupDefense = row?.getString("strAwayLineupDefense")
+                    val strAwayLineupMidfield = row?.getString("strAwayLineupMidfield")
+                    val strAwayLineupForward = row?.getString("strAwayLineupForward")
+                    val strAwayLineupSubstitutes = row?.getString("strAwayLineupSubstitutes")
+                    val intHomeShot = row?.getString("intHomeShots")
+                    val intAwayShot = row?.getString("intAwayShots")
+                    val strDateEvent = row?.getString("dateEvent")
+                    val indonesiaDateFormat = Locale("in","ID","ID")
+                    val dateTime = SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(strDateEvent)
+                    val dateTime2 = SimpleDateFormat("EEEE, dd MMMM yyyy", indonesiaDateFormat).format(dateTime)
+                    dateEvent.text = dateTime2
+                    homeTeam.text = strHomeTeam
+                    awayTeam.text = strAwayTeam
+                    homeScore.text = intHomeScore.toString()
+                    awayScore.text = intAwayScore.toString()
+                    goalHome.text = strHomeGoalDetails
+                    goalAway.text = strAwayGoalDetails
+                    gkHome.text = strHomeLineupGoalKeeper
+                    gkAway.text = strAwayLineupGoalKeeper
+                    dfHome.text = strHomeLineupDefense
+                    dfAway.text = strAwayLineupDefense
+                    mfHome.text = strHomeLineupMidfield
+                    mfAway.text = strAwayLineupMidfield
+                    fwHome.text = strHomeLineupForward
+                    fwAway.text = strAwayLineupForward
+                    subsHome.text = strHomeLineupSubstitutes
+                    subsAway.text = strAwayLineupSubstitutes
+                    shotsHome.text = intHomeShot.toString()
+                    shotsAway.text = intAwayShot.toString()
+                    homeTeamLogo(idHomeTeam)
+                    awayTeamLogo(idAwayTeam)
+                }
             }
             result.failure {
                 loadData(idEvent)
@@ -89,8 +96,13 @@ class DetailActivity : AppCompatActivity() {
                 val respond = String(response.data)
                 val stringBuilder = StringBuilder(respond)
                 val respondParser = Parser().parse(stringBuilder) as JsonObject
-                val strTeamLogo = respondParser.string("strTeamLogo")
-                Picasso.get()?.load(strTeamLogo)?.into(homeTeamPicture)
+                val data = respondParser.array<String>("teams")
+                val array = JSONArray(data)
+                for (i in 0 until array.length()) {
+                    val row = array.getJSONObject(i)
+                    val strTeamLogo = row?.getString("strTeamBadge")
+                    Picasso.get()?.load(strTeamLogo)?.into(homeTeamPicture)
+                }
             }
             result.failure {
                 homeTeamLogo(idHomeTeam)
@@ -104,8 +116,13 @@ class DetailActivity : AppCompatActivity() {
                 val respond = String(response.data)
                 val stringBuilder = StringBuilder(respond)
                 val respondParser = Parser().parse(stringBuilder) as JsonObject
-                val strTeamLogo = respondParser.string("strTeamLogo")
-                Picasso.get()?.load(strTeamLogo)?.into(awayTeamPicture)
+                val data = respondParser.array<String>("teams")
+                val array = JSONArray(data)
+                for (i in 0 until array.length()) {
+                    val row = array.getJSONObject(i)
+                    val strTeamLogo = row?.getString("strTeamBadge")
+                    Picasso.get()?.load(strTeamLogo)?.into(awayTeamPicture)
+                }
             }
             result.failure {
                 awayTeamLogo(idHomeTeam)

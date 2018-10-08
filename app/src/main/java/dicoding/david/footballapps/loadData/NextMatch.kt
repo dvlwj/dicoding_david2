@@ -1,6 +1,7 @@
 package dicoding.david.footballapps.loadData
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.result.failure
 import com.github.kittinunf.result.success
+import dicoding.david.footballapps.DetailActivity
 import dicoding.david.footballapps.R.layout.fragment_main
 import dicoding.david.footballapps.adapter.NextMatchAdapter
 import dicoding.david.footballapps.model.NextMatchModel
@@ -72,7 +74,7 @@ class NextMatch : Fragment(), NextMatchAdapter.MyListener {
 
     override fun onHolderClick(idEvent: String?) {
         ctx?.let {
-//            trainerDialogAccept(it, reqID)
+            startActivity(Intent(it, DetailActivity::class.java).putExtra("idEvent",idEvent))
         }
     }
 }

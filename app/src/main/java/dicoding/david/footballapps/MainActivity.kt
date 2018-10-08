@@ -18,16 +18,4 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = pageAdapter(supportFragmentManager)
         tabs.setupWithViewPager(viewPager)
     }
-
-
-
-//    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-//        return inflater.inflate(R.layout.activity_main, container, false)
-//    }
-
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//        viewPager.adapter = pageAdapter(childFragmentManager)
-//        tabs.setupWithViewPager(viewPager)
-//    }
 }
