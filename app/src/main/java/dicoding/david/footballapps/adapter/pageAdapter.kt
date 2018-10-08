@@ -3,13 +3,13 @@ package dicoding.david.footballapps.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import dicoding.david.footballapps.loadData.lastMatch
 import dicoding.david.footballapps.loadData.NextMatch
+import dicoding.david.footballapps.loadData.LastMatch
 
 class pageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     private val pages = listOf(
-            lastMatch(),
+            LastMatch(),
             NextMatch()
     )
 

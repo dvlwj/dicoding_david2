@@ -1,6 +1,7 @@
 package dicoding.david.footballapps.loadData
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -13,16 +14,17 @@ import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.result.failure
 import com.github.kittinunf.result.success
+import dicoding.david.footballapps.DetailActivity
 import dicoding.david.footballapps.R.layout.fragment_main
-import dicoding.david.footballapps.adapter.NextMatchAdapter
-import dicoding.david.footballapps.model.NextMatchModel
+import dicoding.david.footballapps.adapter.LastMatchAdapter
+import dicoding.david.footballapps.model.LastMatchModel
 import dicoding.david.footballapps.serverList
 import kotlinx.android.synthetic.main.fragment_main.*
 import java.util.*
 
-class NextMatch : Fragment(), NextMatchAdapter.MyListener {
+class LastMatch : Fragment(), LastMatchAdapter.MyListener {
 
-    private var nextMatchArrayList: ArrayList<NextMatchModel>? = null
+    private var lastMatchArrayList: ArrayList<LastMatchModel>? = null
     private var ctx: Context? = null
 
 
@@ -41,14 +43,14 @@ class NextMatch : Fragment(), NextMatchAdapter.MyListener {
     }
 
     private fun loadData(){
-        Fuel.get(serverList.next15).responseJson{ _, response, result ->
+        Fuel.get(serverList.last15).responseJson{ _, response, result ->
             result.success {
                 val respond = String(response.data)
                 val stringBuilder = StringBuilder(respond)
                 val respondParser = Parser().parse(stringBuilder) as JsonObject
                 val data = respondParser.array<JsonObject>("events")
-                val arrayList = data?.map(fun(it: JsonObject): NextMatchModel {
-                    return NextMatchModel(
+                val arrayList = data?.map(fun(it: JsonObject): LastMatchModel {
+                    return LastMatchModel(
                             it.string("idEvent"),
                             it.string("strHomeTeam"),
                             it.string("strAwayTeam"),
@@ -57,9 +59,9 @@ class NextMatch : Fragment(), NextMatchAdapter.MyListener {
                             it.string("dateEvent")
                     )
                 })
-                this.nextMatchArrayList = ArrayList(arrayList)
+                this.lastMatchArrayList = ArrayList(arrayList)
                 val recyclerView = match_list
-                val adapter = NextMatchAdapter(nextMatchArrayList,this@NextMatch)
+                val adapter = LastMatchAdapter(lastMatchArrayList,this@LastMatch)
                 val layoutManager = LinearLayoutManager(context)
                 recyclerView.layoutManager = layoutManager
                 recyclerView.adapter = adapter
@@ -72,7 +74,7 @@ class NextMatch : Fragment(), NextMatchAdapter.MyListener {
 
     override fun onHolderClick(idEvent: String?) {
         ctx?.let {
-//            trainerDialogAccept(it, reqID)
+            startActivity(Intent(it, DetailActivity::class.java).putExtra("idEvent",idEvent))
         }
     }
 }

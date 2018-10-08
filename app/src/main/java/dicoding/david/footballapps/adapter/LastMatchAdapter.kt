@@ -9,20 +9,20 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import java.util.*
 import dicoding.david.footballapps.R.layout.match_list
-import dicoding.david.footballapps.model.NextMatchModel
+import dicoding.david.footballapps.model.LastMatchModel
 import kotlinx.android.synthetic.main.match_list.view.*
 import java.text.SimpleDateFormat
 
 
-class NextMatchAdapter(private val dataList: ArrayList<NextMatchModel>?, private val listener: MyListener) : RecyclerView.Adapter<NextMatchAdapter.NextMatchViewHolder>() {
+class LastMatchAdapter(private val dataList: ArrayList<LastMatchModel>?, private val listener: MyListener) : RecyclerView.Adapter<LastMatchAdapter.LastMatchViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NextMatchViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LastMatchViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(match_list, parent, false)
-        return NextMatchViewHolder(view)
+        return LastMatchViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: NextMatchViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: LastMatchViewHolder, position: Int) {
         dataList?.let {
             holder.bind(it[position])
         }
@@ -32,14 +32,14 @@ class NextMatchAdapter(private val dataList: ArrayList<NextMatchModel>?, private
         return dataList?.size ?: 0
     }
 
-    inner class NextMatchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class LastMatchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val eventBody: ConstraintLayout = itemView.eventBody
         val strHomeTeam: TextView = itemView.teamHome
         val strAwayTeam: TextView = itemView.teamAway
         val intHomeTeam: TextView = itemView.scoreHome
         val intAwayTeam: TextView = itemView.scoreAway
         val dateEvent: TextView = itemView.dateEvent
-        fun bind(model: NextMatchModel){
+        fun bind(model: LastMatchModel){
             val indonesiaDateFormat = Locale("in","ID","ID")
             val dateTime = SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(model.dateEvent)
             val dateTime2 = SimpleDateFormat("EEEE, dd MMMM yyyy", indonesiaDateFormat).format(dateTime)
