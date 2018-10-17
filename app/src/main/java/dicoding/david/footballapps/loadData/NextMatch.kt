@@ -20,6 +20,7 @@ import dicoding.david.footballapps.adapter.NextMatchAdapter
 import dicoding.david.footballapps.model.NextMatchModel
 import dicoding.david.footballapps.serverList
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_main.view.*
 import java.util.*
 
 class NextMatch : Fragment(), NextMatchAdapter.MyListener {
@@ -34,8 +35,15 @@ class NextMatch : Fragment(), NextMatchAdapter.MyListener {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(fragment_main, container, false)
-    }
+        val rootView = inflater.inflate(fragment_main, container, false)
+        rootView.swipe_container.setOnRefreshListener {
+            rootView.swipe_container.isRefreshing = false
+            nextMatchArrayList?.clear()
+            showLoading()
+            loadData()
+            rootView.swipe_container.isRefreshing = false
+        }
+        return rootView    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -65,11 +73,19 @@ class NextMatch : Fragment(), NextMatchAdapter.MyListener {
                 val layoutManager = LinearLayoutManager(context)
                 recyclerView.layoutManager = layoutManager
                 recyclerView.adapter = adapter
+                hideLoading()
             }
             result.failure {
                 loadData()
             }
         }
+    }
+
+    private fun showLoading(){
+        this.progressBar.visibility = View.VISIBLE
+    }
+    private fun hideLoading(){
+        this.progressBar.visibility = View.GONE
     }
 
     override fun onHolderClick(idEvent: String?) {

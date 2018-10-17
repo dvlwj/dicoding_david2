@@ -20,6 +20,7 @@ import dicoding.david.footballapps.adapter.LastMatchAdapter
 import dicoding.david.footballapps.model.LastMatchModel
 import dicoding.david.footballapps.serverList
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_main.view.*
 import java.util.*
 
 class LastMatch : Fragment(), LastMatchAdapter.MyListener {
@@ -34,7 +35,15 @@ class LastMatch : Fragment(), LastMatchAdapter.MyListener {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(fragment_main, container, false)
+        val rootView = inflater.inflate(fragment_main, container, false)
+        rootView.swipe_container.setOnRefreshListener {
+            rootView.swipe_container.isRefreshing = false
+            lastMatchArrayList?.clear()
+            showLoading()
+            loadData()
+            rootView.swipe_container.isRefreshing = false
+        }
+        return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -63,14 +72,23 @@ class LastMatch : Fragment(), LastMatchAdapter.MyListener {
                 val recyclerView = match_list
                 val adapter = LastMatchAdapter(lastMatchArrayList,this@LastMatch)
                 val layoutManager = LinearLayoutManager(context)
-                recyclerView.layoutManager = layoutManager
-                recyclerView.adapter = adapter
+                recyclerView?.layoutManager = layoutManager
+                recyclerView?.adapter = adapter
+                hideLoading()
             }
             result.failure {
                 loadData()
             }
         }
     }
+
+    private fun showLoading(){
+        this.progressBar.visibility = View.VISIBLE
+    }
+    private fun hideLoading(){
+        this.progressBar.visibility = View.GONE
+    }
+
 
     override fun onHolderClick(idEvent: String?) {
         ctx?.let {

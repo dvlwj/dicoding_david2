@@ -45,11 +45,11 @@ class FavoriteMatchAdapter(private val dataList: ArrayList<FavoriteMatchModel>?,
             strHomeTeam.text = model.strHomeTeam
             strAwayTeam.text = model.strAwayTeam
             when (model.intHomeScore){
-                null -> intHomeTeam.text = "0"
+                "null" -> intHomeTeam.text = "0"
                 else -> intHomeTeam.text = model.intHomeScore
             }
             when (model.intAwayScore){
-                null -> intAwayTeam.text = "0"
+                "null" -> intAwayTeam.text = "0"
                 else -> intAwayTeam.text = model.intAwayScore
             }
             dateEvent.text = dateTime2

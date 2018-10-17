@@ -1,11 +1,11 @@
 package dicoding.david.footballapps.model
 
-class FavoriteMatchModel(
+data class FavoriteMatchModel(
     var id: Long?,
     var idEvent: String?,
     var strHomeTeam: String?,
-    var strAwayTeam: String?,
     var intHomeScore: String?,
+    var strAwayTeam: String?,
     var intAwayScore: String?,
     var dateEvent: String?
 ){
