@@ -44,7 +44,7 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         setSupportActionBar(toolbar)
-        idEventData = intent.getStringExtra("idEventData")
+        idEventData = intent.getStringExtra("idEvent")
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         favoriteState(idEventData.toString())
         loadData(idEventData)

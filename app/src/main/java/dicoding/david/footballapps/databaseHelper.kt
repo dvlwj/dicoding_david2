@@ -5,8 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import org.jetbrains.anko.db.*
 
 object databaseHelper {
-    data class Favorite(val id: Long?, val eventID: String?) {
-
+    data class Favorite(val id: Long?, val eventID: String?, val homeTeam: String?, val homeScore: String?, val awayTeam: String?, val awayScore: String?, val dateEvent: String?) {
         companion object {
             const val TABLE_FAVORITE: String = "TABLE_FAVORITE"
             const val ID: String = "ID_"

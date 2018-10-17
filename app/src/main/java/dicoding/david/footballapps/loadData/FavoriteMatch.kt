@@ -50,55 +50,14 @@ class FavoriteMatch() : Fragment(), FavoriteMatchAdapter.MyListener {
     private fun loadData(){
         context?.database?.use {
             val result = select(databaseHelper.Favorite.TABLE_FAVORITE)
-            val favorite = result.parseList(classParser<databaseHelper.Favorite>())
-//            val arrayList = ArrayList(favorite)
-            val stringBuilder = StringBuilder(favorite.toString())
-            val respondParser = Parser().parse(stringBuilder) as JsonObject
-            val data = respondParser.array<JsonObject>("")
-            val arrayList = data?.map { it ->
-                FavoriteMatchModel(
-                        it.string("idEvent"),
-                        it.string("strHomeTeam"),
-                        it.string("strAwayTeam"),
-                        it.string("intHomeScore"),
-                        it.string("intAwayScore"),
-                        it.string("dateEvent")
-                )
-            }
-            favoriteMatchArrayList= ArrayList(arrayList)
+            val favorite = result.parseList(classParser<FavoriteMatchModel>())
+            favoriteMatchArrayList?.addAll(favorite)
             val recyclerView = match_list
             val adapter = FavoriteMatchAdapter(favoriteMatchArrayList,this@FavoriteMatch)
             val layoutManager = LinearLayoutManager(context)
             recyclerView.layoutManager = layoutManager
             recyclerView.adapter = adapter
         }
-//        Fuel.get(serverList.last15).responseJson{ _, response, result ->
-//            result.success {
-//                val respond = String(response.data)
-//                val stringBuilder = StringBuilder(respond)
-//                val respondParser = Parser().parse(stringBuilder) as JsonObject
-//                val data = respondParser.array<JsonObject>("events")
-//                val arrayList = data?.map(fun(it: JsonObject): FavoriteMatchModel {
-//                    return FavoriteMatchModel(
-//                            it.string("idEvent"),
-//                            it.string("strHomeTeam"),
-//                            it.string("strAwayTeam"),
-//                            it.string("intHomeScore"),
-//                            it.string("intAwayScore"),
-//                            it.string("dateEvent")
-//                    )
-//                })
-//                this.favoriteMatchArrayList = ArrayList(arrayList)
-//                val recyclerView = match_list
-//                val adapter = FavoriteMatchAdapter(favoriteMatchArrayList,this@FavoriteMatch)
-//                val layoutManager = LinearLayoutManager(context)
-//                recyclerView.layoutManager = layoutManager
-//                recyclerView.adapter = adapter
-//            }
-//            result.failure {
-//                loadData()
-//            }
-//        }
     }
 
     override fun onHolderClick(idEvent: String?) {
