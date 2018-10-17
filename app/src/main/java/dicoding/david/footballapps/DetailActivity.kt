@@ -33,20 +33,27 @@ class DetailActivity : AppCompatActivity() {
 
     private var menuItem: Menu? = null
     private var isFavorite: Boolean = false
+    private var idEventData: String? = null
+    private var dateEventData: String? = null
+    private var homeTeamData: String? = null
+    private var homeScoreData: String? = null
+    private var awayTeamData: String? = null
+    private var awayScoreData: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         setSupportActionBar(toolbar)
+        idEventData = intent.getStringExtra("idEventData")
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        favoriteState()
-        val idEvent = intent.getStringExtra("idEvent")
-        loadData(idEvent)
+        favoriteState(idEventData.toString())
+        loadData(idEventData)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(detail_menu, menu)
         menuItem = menu
+        setFavorite()
         return true
     }
 
@@ -57,7 +64,7 @@ class DetailActivity : AppCompatActivity() {
                 true
             }
             add_to_favorite -> {
-                if (isFavorite) removeFromFavorite() else addToFavorite()
+                if (isFavorite) removeFromFavorite(idEventData.toString()) else addToFavorite()
                 isFavorite = !isFavorite
                 setFavorite()
                 true
@@ -68,10 +75,14 @@ class DetailActivity : AppCompatActivity() {
 
     private fun addToFavorite(){
         try {
-            val idEvent = intent.getStringExtra("idEvent")
             database.use {
                 insert(Favorite.TABLE_FAVORITE,
-                        Favorite.EVENT_ID to idEvent)
+                        Favorite.EVENT_ID to idEventData,
+                        Favorite.HOME_TEAM to homeTeamData,
+                        Favorite.HOME_SCORE to homeScoreData,
+                        Favorite.AWAY_TEAM to awayTeamData,
+                        Favorite.AWAY_SCORE to awayScoreData,
+                        Favorite.DATE_EVENT to dateEventData)
             }
             Snackbar.make(detailActivity,"Added to Favorites", Snackbar.LENGTH_SHORT).show()
         } catch (e: SQLiteConstraintException){
@@ -79,9 +90,8 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun removeFromFavorite(){
+    private fun removeFromFavorite(idEvent: String){
         try {
-            val idEvent = intent.getStringExtra("idEvent")
             database.use {
                 delete(Favorite.TABLE_FAVORITE, "(EVENT_ID = {id})",
                         "id" to idEvent)
@@ -101,9 +111,9 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun favoriteState(){
+    private fun favoriteState(idEvent: String){
         database.use {
-            val idEvent = intent.getStringExtra("idEvent")
+            //            val idEvent = intent.getStringExtra("idEventData")
             val result = select(Favorite.TABLE_FAVORITE).whereArgs("(EVENT_ID = {id})", "id" to idEvent)
             val favorite = result.parseList(classParser<Favorite>())
             if (!favorite.isEmpty()) isFavorite = true
@@ -144,6 +154,11 @@ class DetailActivity : AppCompatActivity() {
                     val indonesiaDateFormat = Locale("in","ID","ID")
                     val dateTime = SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(strDateEvent)
                     val dateTime2 = SimpleDateFormat("EEEE, dd MMMM yyyy", indonesiaDateFormat).format(dateTime)
+                    homeTeamData = strHomeTeam
+                    awayTeamData = strAwayTeam
+                    awayScoreData = intAwayScore
+                    homeScoreData = intHomeScore
+                    dateEventData = strDateEvent
                     dateEvent.text = dateTime2
                     homeTeam.text = strHomeTeam
                     awayTeam.text = strAwayTeam
