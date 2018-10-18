@@ -50,7 +50,7 @@ class NextMatch : Fragment(), NextMatchAdapter.MyListener {
         loadData()
     }
 
-    private fun loadData(){
+    fun loadData(){
         Fuel.get(serverList.next15).responseJson{ _, response, result ->
             result.success {
                 val respond = String(response.data)

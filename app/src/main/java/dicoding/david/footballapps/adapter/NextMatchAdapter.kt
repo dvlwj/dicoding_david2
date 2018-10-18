@@ -5,13 +5,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
-import java.util.*
 import dicoding.david.footballapps.R.layout.match_list
 import dicoding.david.footballapps.model.NextMatchModel
 import kotlinx.android.synthetic.main.match_list.view.*
 import java.text.SimpleDateFormat
+import java.util.*
 
 
 class NextMatchAdapter(private val dataList: ArrayList<NextMatchModel>?, private val listener: MyListener) : RecyclerView.Adapter<NextMatchAdapter.NextMatchViewHolder>() {

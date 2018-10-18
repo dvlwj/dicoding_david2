@@ -15,10 +15,9 @@ import dicoding.david.footballapps.databaseHelper
 import dicoding.david.footballapps.databaseHelper.database
 import dicoding.david.footballapps.model.FavoriteMatchModel
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_main.view.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
-import kotlin.collections.ArrayList
-import kotlinx.android.synthetic.main.fragment_main.view.*
 
 
 class FavoriteMatch() : Fragment(), FavoriteMatchAdapter.MyListener {
@@ -50,7 +49,7 @@ class FavoriteMatch() : Fragment(), FavoriteMatchAdapter.MyListener {
         loadData()
     }
 
-    private fun loadData(){
+    fun loadData(){
         context?.database?.use {
             val result = select(databaseHelper.Favorite.TABLE_FAVORITE)
             val favorite = result.parseList(classParser<FavoriteMatchModel>())

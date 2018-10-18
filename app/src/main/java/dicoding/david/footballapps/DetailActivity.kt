@@ -2,31 +2,33 @@ package dicoding.david.footballapps
 
 import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
+import android.support.design.widget.Snackbar
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import com.beust.klaxon.*
+import com.beust.klaxon.JsonObject
+import com.beust.klaxon.Parser
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.result.failure
 import com.github.kittinunf.result.success
 import com.squareup.picasso.Picasso
+import dicoding.david.footballapps.R.drawable.ic_favorite
+import dicoding.david.footballapps.R.drawable.ic_favorite_border
+import dicoding.david.footballapps.R.id.add_to_favorite
 import dicoding.david.footballapps.R.menu.detail_menu
-import dicoding.david.footballapps.R.id.*
-import dicoding.david.footballapps.databaseHelper.database
 import dicoding.david.footballapps.databaseHelper.Favorite
+import dicoding.david.footballapps.databaseHelper.database
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.content_detail_activity.*
-import org.jetbrains.anko.db.insert
-import java.text.SimpleDateFormat
-import java.util.*
-import org.json.JSONArray
-import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
-import dicoding.david.footballapps.R.drawable.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.delete
+import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
+import org.json.JSONArray
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class DetailActivity : AppCompatActivity() {

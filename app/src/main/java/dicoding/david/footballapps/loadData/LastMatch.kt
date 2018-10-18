@@ -51,7 +51,7 @@ class LastMatch : Fragment(), LastMatchAdapter.MyListener {
         loadData()
     }
 
-    private fun loadData(){
+    fun loadData(){
         Fuel.get(serverList.last15).responseJson{ _, response, result ->
             result.success {
                 val respond = String(response.data)
