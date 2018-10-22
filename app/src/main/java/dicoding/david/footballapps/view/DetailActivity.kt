@@ -1,4 +1,4 @@
-package dicoding.david.footballapps
+package dicoding.david.footballapps.view
 
 import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
@@ -14,12 +14,14 @@ import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.result.failure
 import com.github.kittinunf.result.success
 import com.squareup.picasso.Picasso
+import dicoding.david.footballapps.R
 import dicoding.david.footballapps.R.drawable.ic_favorite
 import dicoding.david.footballapps.R.drawable.ic_favorite_border
 import dicoding.david.footballapps.R.id.add_to_favorite
 import dicoding.david.footballapps.R.menu.detail_menu
-import dicoding.david.footballapps.databaseHelper.Favorite
-import dicoding.david.footballapps.databaseHelper.database
+import dicoding.david.footballapps.database.databaseHelper.Favorite
+import dicoding.david.footballapps.database.databaseHelper.database
+import dicoding.david.footballapps.api.serverList
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.content_detail_activity.*
 import org.jetbrains.anko.db.classParser
@@ -123,7 +125,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun loadData(idEvent: String?){
-        Fuel.get(serverList.matchDetail+idEvent).responseJson{ _, response, result ->
+        Fuel.get(serverList.matchDetail +idEvent).responseJson{ _, response, result ->
             result.success {
                 val respond = String(response.data)
                 val stringBuilder = StringBuilder(respond)
@@ -191,7 +193,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun homeTeamLogo(idHomeTeam: String?){
-        Fuel.get(serverList.teamDetail+idHomeTeam).responseJson{_, response, result ->
+        Fuel.get(serverList.teamDetail +idHomeTeam).responseJson{ _, response, result ->
             result.success {
                 val respond = String(response.data)
                 val stringBuilder = StringBuilder(respond)
@@ -211,7 +213,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun awayTeamLogo(idHomeTeam: String?){
-        Fuel.get(serverList.teamDetail+idHomeTeam).responseJson{_, response, result ->
+        Fuel.get(serverList.teamDetail +idHomeTeam).responseJson{ _, response, result ->
             result.success {
                 val respond = String(response.data)
                 val stringBuilder = StringBuilder(respond)

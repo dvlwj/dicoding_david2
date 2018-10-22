@@ -1,7 +1,8 @@
-package dicoding.david.footballapps
+package dicoding.david.footballapps.view
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import dicoding.david.footballapps.R
 import dicoding.david.footballapps.adapter.pageAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 

@@ -1,4 +1,4 @@
-package dicoding.david.footballapps.loadData
+package dicoding.david.footballapps.view
 
 import android.content.Context
 import android.content.Intent
@@ -14,13 +14,12 @@ import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.result.failure
 import com.github.kittinunf.result.success
-import dicoding.david.footballapps.DetailActivity
-import dicoding.david.footballapps.R.layout.fragment_main
+import dicoding.david.footballapps.R.layout.fragment_next_match
 import dicoding.david.footballapps.adapter.NextMatchAdapter
 import dicoding.david.footballapps.model.NextMatchModel
-import dicoding.david.footballapps.serverList
-import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.android.synthetic.main.fragment_main.view.*
+import dicoding.david.footballapps.api.serverList
+import kotlinx.android.synthetic.main.fragment_next_match.*
+import kotlinx.android.synthetic.main.fragment_next_match.view.*
 import java.util.*
 
 class NextMatch : Fragment(), NextMatchAdapter.MyListener {
@@ -35,7 +34,7 @@ class NextMatch : Fragment(), NextMatchAdapter.MyListener {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(fragment_main, container, false)
+        val rootView = inflater.inflate(fragment_next_match, container, false)
         rootView.swipe_container.setOnRefreshListener {
             rootView.swipe_container.isRefreshing = false
             nextMatchArrayList?.clear()
@@ -68,11 +67,11 @@ class NextMatch : Fragment(), NextMatchAdapter.MyListener {
                     )
                 })
                 this.nextMatchArrayList = ArrayList(arrayList)
-                val recyclerView = match_list
+                val recyclerView = match_list_next_match
                 val adapter = NextMatchAdapter(nextMatchArrayList,this@NextMatch)
                 val layoutManager = LinearLayoutManager(context)
-                recyclerView.layoutManager = layoutManager
-                recyclerView.adapter = adapter
+                recyclerView?.layoutManager = layoutManager
+                recyclerView?.adapter = adapter
                 hideLoading()
             }
             result.failure {

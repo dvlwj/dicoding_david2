@@ -1,4 +1,4 @@
-package dicoding.david.footballapps
+package dicoding.david.footballapps.database
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase

@@ -7,24 +7,23 @@
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
 
-
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:progressTint="@color/colorAccent"
-        app:layout_constraintEnd_toStartOf="@+id/swipe_container"
+        app:layout_constraintEnd_toStartOf="@+id/swipe_container_fav_match"
         app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.v4.widget.SwipeRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/swipe_container"
+        android:id="@+id/swipe_container_fav_match"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/match_list"
+            android:id="@+id/match_list_fav_match"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </android.support.v4.widget.SwipeRefreshLayout>

@@ -3,9 +3,9 @@ package dicoding.david.footballapps.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import dicoding.david.footballapps.loadData.FavoriteMatch
-import dicoding.david.footballapps.loadData.LastMatch
-import dicoding.david.footballapps.loadData.NextMatch
+import dicoding.david.footballapps.view.FavoriteMatch
+import dicoding.david.footballapps.view.LastMatch
+import dicoding.david.footballapps.view.NextMatch
 
 class pageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 

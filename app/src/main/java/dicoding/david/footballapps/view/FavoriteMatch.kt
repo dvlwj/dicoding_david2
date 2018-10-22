@@ -1,4 +1,4 @@
-package dicoding.david.footballapps.loadData
+package dicoding.david.footballapps.view
 
 import android.content.Context
 import android.content.Intent
@@ -8,14 +8,13 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import dicoding.david.footballapps.DetailActivity
-import dicoding.david.footballapps.R.layout.fragment_main
+import dicoding.david.footballapps.R.layout.fragment_fav_match
 import dicoding.david.footballapps.adapter.FavoriteMatchAdapter
-import dicoding.david.footballapps.databaseHelper
-import dicoding.david.footballapps.databaseHelper.database
+import dicoding.david.footballapps.database.databaseHelper
+import dicoding.david.footballapps.database.databaseHelper.database
 import dicoding.david.footballapps.model.FavoriteMatchModel
-import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.android.synthetic.main.fragment_main.view.*
+import kotlinx.android.synthetic.main.fragment_fav_match.*
+import kotlinx.android.synthetic.main.fragment_fav_match.view.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
 
@@ -32,13 +31,13 @@ class FavoriteMatch() : Fragment(), FavoriteMatchAdapter.MyListener {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(fragment_main, container, false)
-        rootView.swipe_container.setOnRefreshListener {
-            rootView.swipe_container.isRefreshing = false
+        val rootView = inflater.inflate(fragment_fav_match, container, false)
+        rootView.swipe_container_fav_match.setOnRefreshListener {
+            rootView.swipe_container_fav_match.isRefreshing = false
             favoriteMatchArrayList.clear()
             showLoading()
             loadData()
-            rootView.swipe_container.isRefreshing = false
+            rootView.swipe_container_fav_match.isRefreshing = false
         }
         return rootView
     }
@@ -54,11 +53,11 @@ class FavoriteMatch() : Fragment(), FavoriteMatchAdapter.MyListener {
             val result = select(databaseHelper.Favorite.TABLE_FAVORITE)
             val favorite = result.parseList(classParser<FavoriteMatchModel>())
             favoriteMatchArrayList.addAll(favorite)
-            val recyclerView = match_list
+            val recyclerView = match_list_fav_match
             val adapter = FavoriteMatchAdapter(favoriteMatchArrayList,this@FavoriteMatch)
             val layoutManager = LinearLayoutManager(context)
-            recyclerView.layoutManager = layoutManager
-            recyclerView.adapter = adapter
+            recyclerView?.layoutManager = layoutManager
+            recyclerView?.adapter = adapter
             hideLoading()
         }
     }

@@ -1,5 +1,6 @@
-package dicoding.david.footballapps.loadData
+package dicoding.david.footballapps.presenter
 
+import dicoding.david.footballapps.view.LastMatch
 import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify

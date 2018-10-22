@@ -1,4 +1,4 @@
-package dicoding.david.footballapps.loadData
+package dicoding.david.footballapps.view
 
 import android.content.Context
 import android.content.Intent
@@ -14,13 +14,12 @@ import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.result.failure
 import com.github.kittinunf.result.success
-import dicoding.david.footballapps.DetailActivity
-import dicoding.david.footballapps.R.layout.fragment_main
+import dicoding.david.footballapps.R.layout.fragment_last_match
 import dicoding.david.footballapps.adapter.LastMatchAdapter
 import dicoding.david.footballapps.model.LastMatchModel
-import dicoding.david.footballapps.serverList
-import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.android.synthetic.main.fragment_main.view.*
+import dicoding.david.footballapps.api.serverList
+import kotlinx.android.synthetic.main.fragment_last_match.*
+import kotlinx.android.synthetic.main.fragment_last_match.view.*
 import java.util.*
 
 class LastMatch : Fragment(), LastMatchAdapter.MyListener {
@@ -35,7 +34,7 @@ class LastMatch : Fragment(), LastMatchAdapter.MyListener {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(fragment_main, container, false)
+        val rootView = inflater.inflate(fragment_last_match, container, false)
         rootView.swipe_container.setOnRefreshListener {
             rootView.swipe_container.isRefreshing = false
             lastMatchArrayList?.clear()
@@ -69,7 +68,7 @@ class LastMatch : Fragment(), LastMatchAdapter.MyListener {
                     )
                 })
                 this.lastMatchArrayList = ArrayList(arrayList)
-                val recyclerView = match_list
+                val recyclerView = match_list_last_match
                 val adapter = LastMatchAdapter(lastMatchArrayList,this@LastMatch)
                 val layoutManager = LinearLayoutManager(context)
                 recyclerView?.layoutManager = layoutManager
